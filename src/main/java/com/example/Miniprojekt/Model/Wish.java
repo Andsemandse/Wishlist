@@ -1,16 +1,16 @@
 package com.example.Miniprojekt.Model;
 
 
-public class WishList {
-    private String name;
+public class Wish {
+    private String wishName;
     private String description;
     private int price;
     private int amount;
     private String link;
     private boolean fulfilled;
 
-    public WishList(String name, String description, int price, int amount, String link, boolean fulfilled) {
-        this.name = name;
+    public Wish(String wishName, String description, int price, int amount, String link, boolean fulfilled) {
+        this.wishName = wishName;
         this.description = description;
         this.price = price;
         this.amount = amount;
@@ -20,8 +20,8 @@ public class WishList {
 
     //getter
 
-    public String getName() {
-        return name;
+    public String getWishName() {
+        return wishName;
     }
 
     public String getDescription() {
@@ -46,8 +46,8 @@ public class WishList {
     //setter
 
 
-    public void setName(String name) {
-        this.name = name;
+    public void setWishName(String wishName) {
+        this.wishName = wishName;
     }
 
     public void setDescription(String description) {
