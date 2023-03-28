@@ -9,13 +9,8 @@ public class Wish {
     private String link;
     private boolean fulfilled;
 
-    public Wish(String wishName, String description, int price, int amount, String link, boolean fulfilled) {
-        this.wishName = wishName;
-        this.description = description;
-        this.price = price;
-        this.amount = amount;
-        this.link = link;
-        this.fulfilled = fulfilled;
+    public Wish() {
+
     }
 
     //getter
