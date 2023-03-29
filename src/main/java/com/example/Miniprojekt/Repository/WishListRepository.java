@@ -1,5 +1,6 @@
 package com.example.Miniprojekt.Repository;
 
+import com.example.Miniprojekt.DTO.WishListFormDTO;
 import com.example.Miniprojekt.Model.Users;
 import com.example.Miniprojekt.Model.Wish;
 import com.example.Miniprojekt.Model.Wishlist;
@@ -7,10 +8,7 @@ import com.example.Miniprojekt.Utility.ConnectionManager;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 @Component
 public class WishListRepository implements InterfaceRepository {
@@ -86,5 +84,36 @@ public class WishListRepository implements InterfaceRepository {
         }
 
         return resultList;
+    }
+
+    //insert wish into wish table
+    public void addWish(WishListFormDTO form) {
+        try (Connection con = DriverManager.getConnection(url, user, psw)) {
+
+
+            String insertWishSQL = "INSERT INTO wish (wishname, details, price) VALUES (?, ?, ?)";
+            PreparedStatement insertWishStmt = con.prepareStatement(insertWishSQL, Statement.RETURN_GENERATED_KEYS);
+            insertWishStmt.setString(1, "wishName");
+            insertWishStmt.setString(2, "details");
+            insertWishStmt.setInt(3, Integer.parseInt("price"));
+            insertWishStmt.executeUpdate();
+
+            // get generated wish ID
+            ResultSet rs = insertWishStmt.getGeneratedKeys();
+            rs.next();
+            int wishId = rs.getInt(1);
+
+
+            //insert wishlist item into wishlist table
+            String insertWishlistSQL = "INSERT INTO wishlist (wish_id, user_id, amount) VALUES (?, ?, ?)";
+            PreparedStatement insertWishlistStmt = con.prepareStatement(insertWishlistSQL); insertWishlistStmt.setInt(1, wishId);
+            insertWishlistStmt.setInt(2, Integer.parseInt("userId"));
+            insertWishlistStmt.setInt(3, Integer.parseInt("amount"));
+            insertWishlistStmt.executeUpdate();
+
+
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 }
