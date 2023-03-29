@@ -32,4 +32,16 @@ public class WishListController {
 
         return "show_list";
     }
+
+    //Write-methods
+    @GetMapping("adduser") //Todo finish this method
+    public String addUser(Model model){
+
+        return "add_user";
+    }
+
+
+
+
+
 }

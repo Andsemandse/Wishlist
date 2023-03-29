@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link th:href="@{/style.css}" rel="stylesheet" >
 </head>
 <body>
 <table>
@@ -17,17 +18,18 @@
             <td th:text=" u.userName"/>
             <td th:text=" u.userId"/>
             <td>
-                <a th:href="@{http://localhost:8080/wishlist_DB/showlists/{id}(id=${u.userId})}">
+                <a th:href="@{http://localhost:8080/wishlist/showlists/{id}(id=${u.userId})}">
                     <button>Show</button>
                 </a>
             </td>
-
-
 
         </tr>
     </div>
 
 </table>
+<a th:href="@{http://localhost:8080/wishlist/adduser}">
+    <button>add new user</button>
+</a>
 
 
 </body>
