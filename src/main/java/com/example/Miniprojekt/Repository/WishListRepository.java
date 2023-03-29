@@ -7,9 +7,13 @@ import com.example.Miniprojekt.Model.Wishlist;
 import com.example.Miniprojekt.Utility.ConnectionManager;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
+@Repository
+
 @Component
 public class WishListRepository implements InterfaceRepository {
 
@@ -73,7 +77,7 @@ public class WishListRepository implements InterfaceRepository {
                 Wish wish = new Wish();
                 wish.setWishName(rs.getString("wishName"));
                 //wish.setAmount(rs.getInt("amount"));
-                wish.setDescription(rs.getString("details"));
+                wish.setDetails(rs.getString("details"));
                 wish.setLink(rs.getString("link"));
                 wish.setFulfilled(rs.getBoolean("fulfilled"));
                 wish.setPrice(rs.getInt("price"));
@@ -86,34 +90,35 @@ public class WishListRepository implements InterfaceRepository {
         return resultList;
     }
 
-    //insert wish into wish table
-    public void addWish(WishListFormDTO form) {
+    public void addWish(Wish form) {
         try (Connection con = DriverManager.getConnection(url, user, psw)) {
 
-
-            String insertWishSQL = "INSERT INTO wish (wishname, details, price) VALUES (?, ?, ?)";
+            String insertWishSQL = "INSERT INTO wish (wishname, details, price, amount) VALUES (?, ?, ?, ?)";
             PreparedStatement insertWishStmt = con.prepareStatement(insertWishSQL, Statement.RETURN_GENERATED_KEYS);
-            insertWishStmt.setString(1, "wishName");
-            insertWishStmt.setString(2, "details");
-            insertWishStmt.setInt(3, Integer.parseInt("price"));
+            insertWishStmt.setString(1, form.getWishName());
+            insertWishStmt.setString(2, form.getDetails());
+            insertWishStmt.setInt(3, form.getPrice());
+            insertWishStmt.setInt(4, form.getAmount());
+
             insertWishStmt.executeUpdate();
 
             // get generated wish ID
             ResultSet rs = insertWishStmt.getGeneratedKeys();
-            rs.next();
-            int wishId = rs.getInt(1);
+            if (rs.next()) {
+                int wishId = rs.getInt(1);
+                int UserId = rs.getInt(2);
 
-
-            //insert wishlist item into wishlist table
-            String insertWishlistSQL = "INSERT INTO wishlist (wish_id, user_id, amount) VALUES (?, ?, ?)";
-            PreparedStatement insertWishlistStmt = con.prepareStatement(insertWishlistSQL); insertWishlistStmt.setInt(1, wishId);
-            insertWishlistStmt.setInt(2, Integer.parseInt("userId"));
-            insertWishlistStmt.setInt(3, Integer.parseInt("amount"));
-            insertWishlistStmt.executeUpdate();
-
+                //insert wishlist item into wishlist table
+                String insertWishlistSQL = "INSERT INTO wishlist (wish_id, user_id) VALUES (?, ?)";
+                PreparedStatement insertWishlistStmt = con.prepareStatement(insertWishlistSQL);
+                insertWishlistStmt.setInt(1, wishId);
+                insertWishlistStmt.setInt(2, UserId);
+                insertWishlistStmt.executeUpdate();
+            }
 
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
     }
+
 }

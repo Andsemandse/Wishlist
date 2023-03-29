@@ -3,7 +3,7 @@ package com.example.Miniprojekt.Model;
 
 public class Wish {
     private String wishName;
-    private String description;
+    private String details;
     private int price;
     private int amount;
     private String link;
@@ -19,8 +19,8 @@ public class Wish {
         return wishName;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDetails() {
+        return details;
     }
 
     public int getPrice() {
@@ -45,8 +45,8 @@ public class Wish {
         this.wishName = wishName;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDetails(String details) {
+        this.details = details;
     }
 
     public void setPrice(int price) {
