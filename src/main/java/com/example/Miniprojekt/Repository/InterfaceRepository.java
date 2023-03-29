@@ -5,5 +5,5 @@ import com.example.Miniprojekt.Model.Wish;
 import java.util.ArrayList;
 
 public interface InterfaceRepository {
-    ArrayList<Wish> getList();
+    ArrayList<Wish> getWishList(int id);
 }
