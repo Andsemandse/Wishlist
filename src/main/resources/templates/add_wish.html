@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Enter a Wish</title>
+</head>
+<body>
+<h1>Enter a Wish</h1>
+<form method="POST" action="/add-wish">
+    <label for="wishName">Wish name:</label>
+    <input type="text" id="wishName" name="wishName" required>
+
+    <label for="details">Details:</label>
+    <textarea id="details" name="details" required></textarea>
+
+    <label for="price">Price:</label>
+    <input type="number" id="price" name="price" required>
+
+    <label for="amount">Amount:</label>
+    <input type="number" id="amount" name="amount" required>
+
+    <input type="submit" value="Add wish">
+</form>
+</body>
+</html>

@@ -1,13 +1,12 @@
 package com.example.Miniprojekt.Controllers;
 
 
+import com.example.Miniprojekt.Model.Wish;
 import com.example.Miniprojekt.Repository.InterfaceRepository;
 import com.example.Miniprojekt.Repository.WishListRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("wishlist")
 @Controller
@@ -38,6 +37,20 @@ public class WishListController {
     public String addUser(Model model){
 
         return "add_user";
+    }
+
+    @GetMapping("/create-wish")
+    public String showCreateWishForm(Model model) {
+        model.addAttribute("wish", new Wish());
+        return "create-wish-form";
+    }
+
+    @PostMapping("/add-wish")
+    public String addWish(@ModelAttribute("wish") Wish wish) {
+
+
+        // Redirect to the wishlist page
+        return "redirect:/wishlist";
     }
 
 
