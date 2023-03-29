@@ -14,8 +14,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class WishListController {
 
     InterfaceRepository repository = new WishListRepository();
+    @GetMapping("showusers")
+    public String showUsers(Model model){
+        model.addAttribute("users",repository.getListOfUsers());
+        return "userlist";
+    }
 
-    @GetMapping("showlist/{id}")
+    @GetMapping("showlists/{id}")
+    public String showListOfLists(Model model, @PathVariable int id){
+        model.addAttribute("listoflists",repository.getListOfLists(id));//Lists with a specific user id
+        return "list_of_lists";
+    }
+
+    @GetMapping("showwishlist/{id}")
     public String showWishes(Model model, @PathVariable int id){
         model.addAttribute("list",repository.getWishList(id));
 

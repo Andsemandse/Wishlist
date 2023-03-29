@@ -40,7 +40,7 @@ public class WishListRepository implements InterfaceRepository {
     }
 
 
-    public ArrayList<Wishlist> getListOfWishlists(int id){
+    public ArrayList<Wishlist> getListOfLists(int id){
         ArrayList<Wishlist> resultList = new ArrayList<>();
         try {
             Connection con = ConnectionManager.getConnection(url,user,psw);

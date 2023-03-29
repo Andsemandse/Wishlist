@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http//thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>User Name</th>
+        <th>User Id</th>
+        <th>Wishlists</th>
+
+    </tr>
+    <div th:each="u : ${users}">
+        <tr>
+            <td th:text=" u.userName"/>
+            <td th:text=" u.userId"/>
+            <td>
+                <a th:href="@{http://localhost:8080/wishlist_DB/showlists/{id}(id=${u.userId})}">
+                    <button>Show</button>
+                </a>
+            </td>
+
+
+
+        </tr>
+    </div>
+
+</table>
+
+
+</body>
+</html>
