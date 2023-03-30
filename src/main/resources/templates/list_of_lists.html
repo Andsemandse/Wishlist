@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http//thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link th:href="@{/style.css}" rel="stylesheet" >
+</head>
+<body>
+<table>
+  <tr>
+    <th>List Title</th>
+    <th>List Id</th>
+    <th>  </th>
+
+  </tr>
+  <div th:each="l : ${listoflists}">
+    <tr>
+      <td th:text=" ${l.title}"/>
+      <td th:text=" ${l.id}"/>
+      <td>
+        <a th:href="@{http://localhost:8080/wishlist/showwishlist/{id}(id=${u.id})}">
+          <button>Show</button>
+        </a>
+      </td>
+
+    </tr>
+  </div>
+
+</table>
+<a th:href="@{http://localhost:8080/wishlist/addlist}">
+  <button>add new list</button>
+</a>
+
+
+
+</body>
+</html>

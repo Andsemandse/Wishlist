@@ -19,7 +19,7 @@ public class WishListController {
         return "userlist";
     }
 
-    @GetMapping("showlists/{id}")
+    @GetMapping("showlistoflists/{id}")
     public String showListOfLists(Model model, @PathVariable int id){
         model.addAttribute("listoflists",repository.getListOfLists(id));//Lists with a specific user id
         return "list_of_lists";
