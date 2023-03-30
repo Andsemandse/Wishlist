@@ -34,6 +34,7 @@ public class WishListRepository implements InterfaceRepository {
             while (rs.next()) {
                 Users user = new Users();
                 user.setName(rs.getString("userName"));
+                user.setId(rs.getInt("id"));
                 resultList.add(user);
             }
         }catch (SQLException e){
@@ -56,6 +57,7 @@ public class WishListRepository implements InterfaceRepository {
             while (rs.next()) {
                 Wishlist wishlist = new Wishlist();
                 wishlist.setTitle(rs.getString("title"));
+                wishlist.setId(rs.getInt("id"));
                 resultList.add(wishlist);
             }
         }catch (SQLException e){
