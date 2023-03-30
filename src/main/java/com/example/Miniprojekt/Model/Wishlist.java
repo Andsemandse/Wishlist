@@ -1,24 +1,22 @@
 package com.example.Miniprojekt.Model;
 
 public class Wishlist {
-    private int id;
-    private String name;
+    private int userId;
+    private String username;
 
-    //getter
-    public int getId(){
-        return id;
+    public int getUserId() {
+        return userId;
     }
 
-    public String getName(){
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    //setter
-    public void setId(int id){
-        this.id = id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public void setName(String name){
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

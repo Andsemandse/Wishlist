@@ -16,18 +16,18 @@ import java.util.List;
 
 @Component
 public class WishListRepository implements InterfaceRepository {
-
+/*
     @Value("${spring.utility.url}")
     String url;
     @Value("${spring.utility.user}")
     String user;
     @Value("${spring.utility.psw}")
     String psw;
-
+*/
     public ArrayList<Users> getListOfUsers(){
         ArrayList<Users> resultList = new ArrayList<>();
         try {
-            Connection con = ConnectionManager.getConnection(url,user,psw);
+            Connection con = ConnectionManager.getConnection("jdbc:mysql://localhost:3306/wishlist_DB","testuser","Sivertsen13");
             String SQL = "select * from wishlist_DB.users";
             ResultSet rs = con.createStatement().executeQuery(SQL);
 
@@ -47,7 +47,7 @@ public class WishListRepository implements InterfaceRepository {
     public ArrayList<Wishlist> getListOfLists(int id){
         ArrayList<Wishlist> resultList = new ArrayList<>();
         try {
-            Connection con = ConnectionManager.getConnection(url,user,psw);
+            Connection con = ConnectionManager.getConnection("jdbc:mysql://localhost:3306/wishlist_DB","testuser","Sivertsen13");
             String SQL = "select * from wishlist_DB.wishlist where user_id = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1,id);
@@ -67,7 +67,7 @@ public class WishListRepository implements InterfaceRepository {
     public ArrayList<Wish> getWishList(int id){
         ArrayList<Wish> resultList = new ArrayList<>();
         try {
-            Connection con = ConnectionManager.getConnection(url,user,psw);
+            Connection con = ConnectionManager.getConnection("jdbc:mysql://localhost:3306/wishlist_DB","testuser","Sivertsen13");
             String SQL = "select * from wishlist_DB.wish where wishlist_id = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1,id);
@@ -91,7 +91,7 @@ public class WishListRepository implements InterfaceRepository {
     }
 
     public void addWish(Wish form) {
-        try (Connection con = DriverManager.getConnection(url, user, psw)) {
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/wishlist_DB","testuser","Sivertsen13")) {
 
             String insertWishSQL = "INSERT INTO wish (wishname, details, price, amount) VALUES (?, ?, ?, ?)";
             PreparedStatement insertWishStmt = con.prepareStatement(insertWishSQL, Statement.RETURN_GENERATED_KEYS);
