@@ -93,7 +93,7 @@ public class WishListRepository implements InterfaceRepository {
     }
 
     public void addUser(Users users){
-        try (Connection con = DriverManager.getConnection(url, user, psw)){
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/wishlist_DB","testuser","Sivertsen13")){
             String insertUsersSQL = "INSERT INTO users (name) VALUES (?)";
             PreparedStatement insertUsersStmt = con.prepareStatement(insertUsersSQL);
             insertUsersStmt.setString(1, users.getName());

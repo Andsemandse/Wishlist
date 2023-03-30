@@ -43,7 +43,7 @@ public class WishListController {
     @GetMapping("/create-wish")
     public String showCreateWishForm(Model model) {
         model.addAttribute("wish", new Wish());
-        return "create-wish-form";
+        return "add_wish";
     }
 
     @PostMapping("/add-user")
