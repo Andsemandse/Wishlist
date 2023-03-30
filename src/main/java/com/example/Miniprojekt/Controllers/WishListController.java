@@ -1,6 +1,7 @@
 package com.example.Miniprojekt.Controllers;
 
 
+import com.example.Miniprojekt.Model.Users;
 import com.example.Miniprojekt.Model.Wish;
 import com.example.Miniprojekt.Repository.InterfaceRepository;
 import com.example.Miniprojekt.Repository.WishListRepository;
@@ -45,6 +46,10 @@ public class WishListController {
         return "create-wish-form";
     }
 
+    @PostMapping("/add-user")
+    public String addUser(@ModelAttribute("wish")Users users){
+        return "redirect:/wishlist";
+    }
     @PostMapping("/add-wish")
     public String addWish(@ModelAttribute("wish") Wish wish) {
 
