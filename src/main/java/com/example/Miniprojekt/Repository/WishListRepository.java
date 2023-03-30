@@ -90,6 +90,17 @@ public class WishListRepository implements InterfaceRepository {
         return resultList;
     }
 
+    public void addUser(Users users){
+        try (Connection con = DriverManager.getConnection(url, user, psw)){
+            String insertUsersSQL = "INSERT INTO users (name) VALUES (?)";
+            PreparedStatement insertUsersStmt = con.prepareStatement(insertUsersSQL);
+            insertUsersStmt.setString(1, users.getName());
+            insertUsersStmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void addWish(Wish form) {
         try (Connection con = DriverManager.getConnection(url, user, psw)) {
 
