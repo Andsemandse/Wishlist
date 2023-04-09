@@ -8,6 +8,8 @@ public class Wish {
     private int amount;
     private String link;
     private boolean fulfilled;
+    private int id;
+
 
     public Wish() {
 
@@ -38,6 +40,10 @@ public class Wish {
     public boolean isFulfilled() {
         return fulfilled;
     }
+
+    public int getId() {
+        return id;
+    }
     //setter
 
 
@@ -63,6 +69,10 @@ public class Wish {
 
     public void setFulfilled(boolean fulfilled) {
         this.fulfilled = fulfilled;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
 

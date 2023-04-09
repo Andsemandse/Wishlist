@@ -16,14 +16,14 @@ import java.util.List;
 
 @Component
 public class WishListRepository implements InterfaceRepository {
-/*
+
     @Value("${spring.utility.url}")
     String url;
     @Value("${spring.utility.user}")
     String user;
     @Value("${spring.utility.psw}")
     String psw;
-*/
+
     public ArrayList<Users> getListOfUsers(){
         ArrayList<Users> resultList = new ArrayList<>();
         try {
@@ -134,4 +134,22 @@ public class WishListRepository implements InterfaceRepository {
         }
     }
 
+    public void editWish(Wish form) {
+        try (Connection con = DriverManager.getConnection(url, user, psw)) {
+
+            // update wishtable with new values/edit
+            String updateWishSQL = "UPDATE wish SET wishname=?, details=?, price=?, amount=? WHERE id=?";
+            PreparedStatement updateWishStmt = con.prepareStatement(updateWishSQL);
+            updateWishStmt.setString(1, form.getWishName());
+            updateWishStmt.setString(2, form.getDetails());
+            updateWishStmt.setInt(3, form.getPrice());
+            updateWishStmt.setInt(4, form.getAmount());
+            updateWishStmt.setInt(5, form.getId());
+
+            updateWishStmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
 }

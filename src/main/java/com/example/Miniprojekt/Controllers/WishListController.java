@@ -58,8 +58,11 @@ public class WishListController {
         return "redirect:/wishlist";
     }
 
+    @GetMapping("/edit-wish")
+    public String editWish(@ModelAttribute("wish") Wish form) {
+        // update the wish table with new values
 
-
-
+        return "redirect:/wish-list";
+    }
 
 }
