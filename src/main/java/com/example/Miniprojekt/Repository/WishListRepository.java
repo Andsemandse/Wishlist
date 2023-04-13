@@ -17,12 +17,30 @@ import java.util.List;
 @Component
 public class WishListRepository implements InterfaceRepository {
 
+    private final String url;
+    private final String user;
+    private final String psw;
+
+    public WishListRepository() {
+        this.url = "jdbc:mysql://localhost:3306/wishlist_DB";
+        this.user = "";
+        this.psw = "";
+    }
+
+
+/*
     @Value("${spring.utility.url}")
     String url;
     @Value("${spring.utility.user}")
     String user;
     @Value("${spring.utility.psw}")
     String psw;
+
+ */
+
+    public Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(url, user, psw);
+    }
 
     public ArrayList<Users> getListOfUsers(){
         ArrayList<Users> resultList = new ArrayList<>();
