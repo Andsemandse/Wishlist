@@ -80,7 +80,6 @@ public class WishListRepository implements InterfaceRepository {
                 wish.setWishName(rs.getString("wishName"));
                 //wish.setAmount(rs.getInt("amount"));
                 wish.setDetails(rs.getString("details"));
-                wish.setLink(rs.getString("link"));
                 wish.setPrice(rs.getInt("price"));
                 resultList.add(wish);
             }

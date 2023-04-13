@@ -6,7 +6,6 @@ public class Wish {
     private String details;
     private int price;
     private int amount;
-    private String link;
     private int id;
 
 
@@ -32,9 +31,6 @@ public class Wish {
         return amount;
     }
 
-    public String getLink() {
-        return link;
-    }
 
     public int getId() {
         return id;
@@ -58,9 +54,6 @@ public class Wish {
         this.amount = amount;
     }
 
-    public void setLink(String link) {
-        this.link = link;
-    }
 
     public void setId(int id) {
         this.id = id;
