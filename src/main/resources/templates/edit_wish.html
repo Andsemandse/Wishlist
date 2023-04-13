@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Wish</title>
+</head>
+<body>
+<form action="edit-wish" method="post">
+    <label for="wishName">Wish Name:</label>
+    <input type="text" id="wishName" name="wishName" th:value="${wish.wishName}" required><br>
+
+    <label for="details">Details:</label>
+    <textarea id="details" name="details" required th:text="${wish.details}"></textarea><br>
+
+    <label for="price">Price:</label>
+    <input type="number" id="price" name="price" th:value="${wish.price}" required><br>
+
+    <label for="amount">Amount:</label>
+    <input type="number" id="amount" name="amount" th:value="${wish.amount}" required><br>
+
+    <input type="hidden" name="id" th:value="${wish.id}">
+
+    <input type="submit" value="Update">
+</form>
+</body>
+</html>

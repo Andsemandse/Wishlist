@@ -146,7 +146,22 @@ public class WishListRepository implements InterfaceRepository {
             updateWishStmt.setInt(4, form.getAmount());
             updateWishStmt.setInt(5, form.getId());
 
+
             updateWishStmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    public void deleteWish(int wishId) {
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/wishlist_DB","testuser","Sivertsen13")) {
+
+            // Delete a wish from the wishtable
+            String deleteWishSQL = "DELETE FROM wish WHERE id=?";
+            PreparedStatement deleteWishStmt = con.prepareStatement(deleteWishSQL);
+            deleteWishStmt.setInt(1, wishId);
+            deleteWishStmt.executeUpdate();
 
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
