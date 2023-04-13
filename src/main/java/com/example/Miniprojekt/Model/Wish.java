@@ -7,7 +7,6 @@ public class Wish {
     private int price;
     private int amount;
     private String link;
-    private boolean fulfilled;
     private int id;
 
 
@@ -37,10 +36,6 @@ public class Wish {
         return link;
     }
 
-    public boolean isFulfilled() {
-        return fulfilled;
-    }
-
     public int getId() {
         return id;
     }
@@ -65,10 +60,6 @@ public class Wish {
 
     public void setLink(String link) {
         this.link = link;
-    }
-
-    public void setFulfilled(boolean fulfilled) {
-        this.fulfilled = fulfilled;
     }
 
     public void setId(int id) {
