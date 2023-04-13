@@ -14,7 +14,7 @@ CREATE TABLE wishlist (
   title VARCHAR(255) NOT NULL,
   user_id INT NOT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (user_id) REFERENCES user(id)
+  FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
 
@@ -24,10 +24,7 @@ CREATE TABLE wish (
   details VARCHAR(255) NOT NULL,
   price INT,
   amount INT,
-  fulfilled TINYINT,
   wishlist_id INT NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (wishlist_id) REFERENCES wishlist(id)
 );
-
-commit;
