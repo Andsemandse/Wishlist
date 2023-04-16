@@ -16,40 +16,14 @@ import java.util.List;
 
 @Component
 public class WishListRepository implements InterfaceRepository {
-/*
-    private final String url;
-    private final String user;
-    private final String psw;
-
-    public WishListRepository() {
-        this.url = "jdbc:mysql://localhost:3306/wishlist_DB";
-        this.user = "";
-        this.psw = "";
-    }
- */
-
-    String url = "miniprojekttest.mysql.database.azure.com:3306/wishlist_db?ss1mode=require";
-    String user = "test1234";
-    String psw = "!ww12345678";
-
-/*
-    @Value("${spring.utility.url}")
-    String url;
-    @Value("${spring.utility.user}")
-    String user;
-    @Value("${spring.utility.psw}")
-    String psw;
-
- */
-
     public Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(url, user, psw);
+        return ConnectionManager.getConnection();
     }
 
     public ArrayList<Users> getListOfUsers(){
         ArrayList<Users> resultList = new ArrayList<>();
         try {
-            Connection con = ConnectionManager.getConnection(url, user, psw);
+            Connection con = ConnectionManager.getConnection();
             String SQL = "select * from wishlist_DB.users";
             ResultSet rs = con.createStatement().executeQuery(SQL);
 
@@ -70,7 +44,7 @@ public class WishListRepository implements InterfaceRepository {
     public ArrayList<Wishlist> getListOfLists(int id){
         ArrayList<Wishlist> resultList = new ArrayList<>();
         try {
-            Connection con = ConnectionManager.getConnection(url, user, psw);
+            Connection con = ConnectionManager.getConnection();
             String SQL = "select * from wishlist_DB.wishlist where user_id = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1,id);
@@ -91,7 +65,7 @@ public class WishListRepository implements InterfaceRepository {
     public ArrayList<Wish> getWishList(int id){
         ArrayList<Wish> resultList = new ArrayList<>();
         try {
-            Connection con = ConnectionManager.getConnection(url, user, psw);
+            Connection con = ConnectionManager.getConnection();
             String SQL = "select * from wishlist_DB.wish where wishlist_id = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1,id);
@@ -112,11 +86,11 @@ public class WishListRepository implements InterfaceRepository {
         return resultList;
     }
 
-    public void addUser(Users users){
-        try (Connection con = DriverManager.getConnection(url, user, psw)){
+    public void addUser(Users form) throws RuntimeException{
+        try (Connection con = ConnectionManager.getConnection()){
             String insertUsersSQL = "INSERT INTO users (name) VALUES (?)";
             PreparedStatement insertUsersStmt = con.prepareStatement(insertUsersSQL);
-            insertUsersStmt.setString(1, users.getName());
+            insertUsersStmt.setString(1, form.getName());
             insertUsersStmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -124,8 +98,7 @@ public class WishListRepository implements InterfaceRepository {
     }
 
     public void addWish(Wish form) {
-        try (Connection con = DriverManager.getConnection(url, user, psw)) {
-
+        try (Connection con = ConnectionManager.getConnection()) {
             String insertWishSQL = "INSERT INTO wish (wishname, details, price, amount) VALUES (?, ?, ?, ?)";
             PreparedStatement insertWishStmt = con.prepareStatement(insertWishSQL, Statement.RETURN_GENERATED_KEYS);
             insertWishStmt.setString(1, form.getWishName());
@@ -155,7 +128,7 @@ public class WishListRepository implements InterfaceRepository {
     }
 
     public void editWish(Wish form) {
-        try (Connection con = DriverManager.getConnection(url, user, psw)) {
+        try (Connection con = ConnectionManager.getConnection()) {
 
             // update wishtable with new values/edit
             String updateWishSQL = "UPDATE wish SET wishname=?, details=?, price=?, amount=? WHERE id=?";
@@ -175,7 +148,7 @@ public class WishListRepository implements InterfaceRepository {
     }
 
     public void deleteWish(int wishId) {
-        try (Connection con = DriverManager.getConnection(url, user, psw)) {
+        try (Connection con = ConnectionManager.getConnection()) {
 
             // Delete a wish from the wishtable
             String deleteWishSQL = "DELETE FROM wish WHERE id=?";

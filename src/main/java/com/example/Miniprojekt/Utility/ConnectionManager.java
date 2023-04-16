@@ -8,12 +8,17 @@ public class ConnectionManager {
 
     public static Connection con = null;
 
-    public static Connection getConnection(String url,String username,String password) throws SQLException {
+    public static Connection getConnection() throws SQLException {
 
-        if(con==null){
+        String url = "miniprojekttest.mysql.database.azure.com:3306/wishlist_db?ss1mode=require";
+        String username = "test1234";
+        String password = "!ww12345678";
+
+        try{
             con = DriverManager.getConnection(url,username,password);
+        } catch(SQLException exception){
+            exception.printStackTrace();
         }
-
         return con;
     }
 }
