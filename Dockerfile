@@ -1,4 +1,4 @@
-FROM lakruzz/lamj:latest
+FROM local:latest
 
 # ENV MYSQL_ROOT_PASSWORD=root
 
