@@ -13,7 +13,7 @@
         <th>Wishlists</th>
 
     </tr>
-    <div th:each="u : ${users}">
+    <div th:if="${users}!=null" th:each="u : ${users}">
         <tr>
             <td th:text=" ${u.name}"/>
             <td th:text=" ${u.id}"/>

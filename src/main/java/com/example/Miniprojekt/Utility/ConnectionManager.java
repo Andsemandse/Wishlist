@@ -10,7 +10,7 @@ public class ConnectionManager {
 
     public static Connection getConnection() throws SQLException {
 
-        String url = "miniprojekttest.mysql.database.azure.com:3306/wishlist_db?ss1mode=require";
+        String url = "jdbc:mysql://miniprojekttest.mysql.database.azure.com:3306/wishlist_db";
         String username = "test1234";
         String password = "!ww12345678";
 

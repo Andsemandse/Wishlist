@@ -12,4 +12,10 @@ public interface InterfaceRepository {
     ArrayList<Wishlist> getListOfLists(int id);
 
     ArrayList<Users> getListOfUsers();
+
+    void addWish(Wish form);
+
+    void addUser(Users form);
+
+    void editWish(Wish form);
 }

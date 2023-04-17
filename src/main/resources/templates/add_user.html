@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link th:href="@{/style.css}" rel="stylesheet" >
     <title>Title</title>
 </head>
 <body>
+<form action="#" th:action="@{/wishlist/add-user}" method="POST" th:object="${users}">
+    <label for="name">User name:</label>
+    <input type="text" id="name" name="name" th:value="*{name}" required>
+
+    <input type="submit" value="Submit">
+</form>
 
 </body>
 </html>

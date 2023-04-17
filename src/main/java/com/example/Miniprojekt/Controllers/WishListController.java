@@ -13,8 +13,14 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class WishListController {
 
+
+
     InterfaceRepository repository = new WishListRepository();
     String returnValue;
+    @GetMapping("")
+    public String landingSite() {
+        return "landing-site";
+    }
     @GetMapping("showusers")
     public String showUsers(Model model){
         model.addAttribute("users",repository.getListOfUsers());
@@ -38,8 +44,13 @@ public class WishListController {
     //Write-methods
     @GetMapping("adduser") //Todo finish this method
     public String addUser(Model model){
-
+        model.addAttribute("users",new Users());
         return "add_user";
+    }
+    @PostMapping("add-user")
+    public String addUser(@ModelAttribute("users")Users users){
+        repository.addUser(users);
+        return "redirect: userlist";
     }
 
     @GetMapping("/create-wish")
@@ -48,26 +59,27 @@ public class WishListController {
         return "add_wish";
     }
 
-    @PostMapping("/add-user")
-    public String addUser(@ModelAttribute("wish")Users users){
-        return "redirect: userlist";
-    }
+
     @PostMapping("/add-wish")
     public String addWish(@ModelAttribute("wish") Wish wish) {
-
-
+        repository.addWish(wish);
         // Redirect to the wishlist page
         return "redirect: show_list";
     }
     //Return Back
 
-
-
     @GetMapping("/edit-wish")
-    public String editWish(@ModelAttribute("wish") Wish form) {
+    public String editWish(Model model) {
+        model.addAttribute("wish",new Wish());
         // update the wish table with new values
 
         return "redirect:/wish-list";
+    }
+
+    @PostMapping("/edit-wish")
+    public String editWish(@ModelAttribute("wish") Wish wish ){
+        repository.editWish(wish);
+        return "userlist"; //?
     }
 
 }

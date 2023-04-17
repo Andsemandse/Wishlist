@@ -1,6 +1,25 @@
 table, th, td {
     border:1px solid black;
+    color: darkorange;
 }
 table{
     min-width: 500px;
+    color: green;
+}
+h1{
+    color: brown;
+}
+h2{
+    color: cornflowerblue  ;
+}
+
+p{
+    color: coral;
+}
+
+label{
+    color: darkmagenta;
+}
+text{
+    color: darkslategrey;
 }
