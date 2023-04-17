@@ -36,4 +36,4 @@ CMD set -eux; \
 #   - `-p 8080:8080`: This maps port 8080 from the container to port 8080 on the host.
 #   - `-p 3306:3306`: This maps port 3306 from the container to port 3306 on the host.
 #   - `-e MYSQL_ROOT_PASSWORD=root`: This environment variable sets the root password for MySQL 'root' is default.
-#   - `superhero5`: This specifies the name of the image to run.
+#   - `wishlist`: This specifies the name of the image to run.
