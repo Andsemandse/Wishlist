@@ -23,10 +23,10 @@ CMD set -eux; \
     java -jar /app/*.jar;
 
 # Build like this:
-# docker build  -t Wishlist .
+# docker build  -t wishlist .
 
 # Run like this:
-# docker run -it --rm --name Wishlist --pid=host -p 8080:8080 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root Wishlist
+# docker run -it --rm --name wishlist --pid=host -p 8080:8080 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=!ww12345678 wishlist
 #
 #   - `docker run`: This command is used to run a container from an image.
 #   - `-it`: This switch allocates a pseudo-TTY and opens an interactive terminal within the container.
