@@ -1,39 +1,32 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http//thymeleaf.org">
 <head>
-  <title>Wishlist</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link th:href="@{/style.css}" rel="stylesheet" >
 </head>
 <body>
 <table>
-  <thead>
   <tr>
-    <th>Wish Name</th>
+    <th>Wish</th>
     <th>Description</th>
     <th>Price</th>
     <th>Link</th>
     <th>Status</th>
-    <th></th>
   </tr>
-  </thead>
-  <tbody>
-  <tr th:each="wish : ${wishlist}">
-    <td th:text="${wish.wishName}"></td>
-    <td th:text="${wish.description}"></td>
-    <td th:text="${wish.price}"></td>
-    <td>
-      <button type="button" onclick="editWish(${wish.id})">Edit</button>
+  <div th:each="w : ${list}">
+    <tr>
+      <td th:text=" w.wishName"/>
+      <td th:text=" w.description"/>
+      <td th:text=" w.price"/>
+      <td th:text=" w.link"/>
+      <td th:text=" w.fulfilled"/>
 
-      <form th:action="@{/wishlist/delete-wish}" method="post" onsubmit="return confirm('Ønskes ønsket slettet?')">
-        <input type="hidden" name="wishId" th:value="${wish.id}" />
-        <button type="submit">Delete</button>
-      </form>
-    </td>
-  </tr>
-  </tbody>
+    </tr>
+  </div>
+
 </table>
-
-<a th:href="@{/wishlist/create-wish}">
-  <button>Add Wish</button>
-</a>
-</body>
+<a th:href="@{http://localhost:8080/wishlist/create-wish}">
+  <button>add wish</button>
+</a></body>
 </html>

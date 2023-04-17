@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class WishListController {
 
     InterfaceRepository repository = new WishListRepository();
+    String returnValue;
     @GetMapping("showusers")
     public String showUsers(Model model){
         model.addAttribute("users",repository.getListOfUsers());
@@ -21,15 +22,16 @@ public class WishListController {
     }
 
     @GetMapping("showlistoflists/{id}")
-    public String showListOfLists(Model model, @PathVariable int id){
-        model.addAttribute("listoflists",repository.getListOfLists(id));//Lists with a specific user id
+    public String showListOfLists(Model model, @PathVariable String id){
+        model.addAttribute("listoflists",repository.getListOfLists( Integer.parseInt(id)));//Lists with a specific user id
+        returnValue = id;
         return "list_of_lists";
     }
 
     @GetMapping("showwishlist/{id}")
     public String showWishes(Model model, @PathVariable int id){
         model.addAttribute("list",repository.getWishList(id));
-
+        model.addAttribute("return-value",returnValue);
         return "show_list";
     }
 
@@ -48,15 +50,18 @@ public class WishListController {
 
     @PostMapping("/add-user")
     public String addUser(@ModelAttribute("wish")Users users){
-        return "redirect:/wishlist";
+        return "redirect: userlist";
     }
     @PostMapping("/add-wish")
     public String addWish(@ModelAttribute("wish") Wish wish) {
 
 
         // Redirect to the wishlist page
-        return "redirect:/wishlist";
+        return "redirect: show_list";
     }
+    //Return Back
+
+
 
     @GetMapping("/edit-wish")
     public String editWish(@ModelAttribute("wish") Wish form) {

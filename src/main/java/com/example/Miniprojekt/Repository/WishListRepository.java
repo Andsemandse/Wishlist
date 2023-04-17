@@ -16,7 +16,7 @@ import java.util.List;
 
 @Component
 public class WishListRepository implements InterfaceRepository {
-    public Connection getConnection() throws SQLException {
+    public Connection getConnection() throws SQLException {  //bliver ikke brugt?
         return ConnectionManager.getConnection();
     }
 
