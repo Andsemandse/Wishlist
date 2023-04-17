@@ -23,10 +23,10 @@ CMD set -eux; \
     java -jar /app/*.jar;
 
 # Build like this:
-# docker build  -t superhero5 .
+# docker build  -t Wishlist .
 
 # Run like this:
-# docker run -it --rm --name superhero5 --pid=host -p 8080:8080 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root superhero5
+# docker run -it --rm --name Wishlist --pid=host -p 8080:8080 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root Wishlist
 #
 #   - `docker run`: This command is used to run a container from an image.
 #   - `-it`: This switch allocates a pseudo-TTY and opens an interactive terminal within the container.
