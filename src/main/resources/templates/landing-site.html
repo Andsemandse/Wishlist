@@ -7,18 +7,25 @@
 <body>
 <style>
     body {
-        background-image: url('https://github.com/Andsemandse/Wishlist/blob/main/src/gift.jpeg');
-    }
+        background-color: lightcyan;
+        text-align: center;
+        background-image:url("https://github.com/Andsemandse/Wishlist/blob/main/src/gift.jpeg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+
+            }
     h1 {
         color: darkblue;
         font-family: verdana;
         font-size: 200%;
+        text-align: center;
     }
     button{
         background-color: lightblue;
         font-family: Arial;
         font-size: 120%;
-
+        -moz-box-align: center;
     }
 
 </style>
@@ -30,11 +37,10 @@
 
 </body>
 
-
-    <div>
+<div>
 
         Please click the button below in order to creat a wish list.
-    </div>
+
 <div >
     <a th:href="@{http://localhost:8080/wishlist/create-wish}">
 
