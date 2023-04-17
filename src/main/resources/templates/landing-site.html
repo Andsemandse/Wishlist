@@ -6,10 +6,19 @@
 </head>
 <body>
 <style>
+    body {
+        background-image: url('https://github.com/Andsemandse/Wishlist/blob/main/src/gift.jpeg');
+    }
     h1 {
-        color: blue;
+        color: darkblue;
         font-family: verdana;
         font-size: 200%;
+    }
+    button{
+        background-color: lightblue;
+        font-family: Arial;
+        font-size: 120%;
+
     }
 
 </style>
@@ -20,10 +29,16 @@
 </h1>
 
 </body>
-<div >
 
+
+    <div>
+
+        Please click the button below in order to creat a wish list.
+    </div>
+<div >
     <a th:href="@{http://localhost:8080/wishlist/create-wish}">
-        <button> style="background-color:powderblue;">Creat a wish list </button>
+
+        <button> Creat a wish list</button>
 
     </a>
 
